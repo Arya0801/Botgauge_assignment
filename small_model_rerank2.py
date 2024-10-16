@@ -37,7 +37,7 @@ def load_dataset():
     corpus, queries, qrels = GenericDataLoader(data_path).load(split="test")
     return corpus, queries, qrels
 
-# Stage 1: Candidate retrieval using Sentence Transformer
+# Stage 1: Candidate retrieval using Sentence Transformer/all-MiniLM-L6-v2
 def candidate_retrieval(query, corpus, top_k=10):
     model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
     corpus_ids = list(corpus.keys())
@@ -75,7 +75,7 @@ def evaluate_ndcg(reranked_docs, qrels, query_id, k=10):
 
 # Streamlit main function
 def main():
-    st.title("Multi-Stage Retrieval Pipeline with Evaluation")
+    st.title("Multi-Stage Retrieval Pipeline with Evaluation(Small model)")
 
     st.write("Loading the dataset...")
     corpus, queries, qrels = load_dataset()
